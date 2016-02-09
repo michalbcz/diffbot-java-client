@@ -1,18 +1,19 @@
 package com.diffbot.clients;
 
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
+
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
 /**
  * Created by wadi chemkhi on 02/01/14.
@@ -70,18 +71,16 @@ public class DiffbotHttpClient {
                 .setHost("api.diffbot.com")
                 .setPath("/v" + version + "/" + api);
 
-        StringBuilder query=new StringBuilder()
-                .append("token=").append(token)
-                .append("&url=").append(url);
+        ub.setParameter("token", token);
+        ub.setParameter("url", url);
 
         if (params!=null){
-        Iterator<String> it = params.keySet().iterator();
-        while (it.hasNext()) {
-            String key = it.next();
-            query.append("&").append(key).append("=").append(params.get(key));
+          Iterator<String> it = params.keySet().iterator();
+          while (it.hasNext()) {
+              String key = it.next();
+              ub.setParameter(key, params.get(key));
+          }
         }
-        }
-        ub.setCustomQuery(query.toString());
         try {
             uri = ub.build();
             System.out.println(uri.toString());

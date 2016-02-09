@@ -11,12 +11,12 @@ import java.io.IOException;
  */
 public class AnalyzeApiTest {
 
-    private String testToken="353883355a5c7ff1793b14f81e19c359";
+    private String testToken="mike";
 
     @Test
     public void testAnalyseJacksonResponse() throws IOException {
         DiffbotClient client = new DiffbotClient(testToken,"2");
-        JsonNode a= (JsonNode) client.analyze(DiffbotClient.ResponseType.Jackson,"https://github.com/wadi-chemkhi/diffbot-java-client");
+        JsonNode a= (JsonNode) client.analyze(DiffbotClient.ResponseType.Jackson,"http://www.bestbuy.com/site/spectre-blu-ray-digital-copy/4616800.p?id=3529822&skuId=4616800");
         System.out.println(a.toString());
     }
 }
