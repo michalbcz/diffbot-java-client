@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class AnalyzeApiTest {
 
-    private String testToken="mike";
+    private String testToken="DIFFBOT_TOKEN";
 
     @Test
     public void testAnalyseJacksonResponse() throws IOException {
